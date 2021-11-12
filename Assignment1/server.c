@@ -78,6 +78,9 @@ int main(int argc, char const *argv[])
 
     	printf("Hello message sent\n");
     }
-
+    else
+    {
+	exit("FAIL");
+    }
     return 0;
 }
