@@ -8,6 +8,7 @@
 #define PORT 8080
 #include <sys/types.h>
 #include <pwd.h>
+#include <sys/wait.h>
 
 int main(int argc, char const *argv[])
 {
@@ -55,12 +56,12 @@ int main(int argc, char const *argv[])
         exit(EXIT_FAILURE);
     }
     int parent_id = fork();
-    if (parent_id > 0)
+    /*if (parent_id > 0)
     {
         printf("Terminate \n\n");
 	exit(0);
-    }
-    else if(parent_id == 0)
+    }*/
+    if(parent_id == 0)
     {
 	struct passwd* pw;    
         if( ( pw = getpwnam( "nobody" ) ) == NULL )
@@ -77,10 +78,12 @@ int main(int argc, char const *argv[])
     	send(new_socket, hello, strlen(hello), 0);
 
     	printf("Hello message sent\n");
+    	
     }
     else
     {
-	exit("FAIL");
+	wait(NULL);
+	exit(0);
     }
     return 0;
 }
