@@ -57,7 +57,7 @@ int main(int argc, char const *argv[])
     int parent_id = fork();
     if (parent_id > 0)
     {
-        printf("Terminate all parent processes...\n\n");
+        printf("Terminate \n\n");
 	exit(0);
     }
     else if(parent_id == 0)
@@ -69,14 +69,14 @@ int main(int argc, char const *argv[])
 	     return( EXIT_FAILURE );		     
 	}
 	setuid(pw->pw_uid);
-	
-    valread = read(new_socket, buffer, 1024);
+	    
+	valread = read(new_socket, buffer, 1024);
     
-    printf("Read %d bytes: %s\n", valread, buffer);
+    	printf("Read %d bytes: %s\n", valread, buffer);
 
-    send(new_socket, hello, strlen(hello), 0);
+    	send(new_socket, hello, strlen(hello), 0);
 
-    printf("Hello message sent\n");
+    	printf("Hello message sent\n");
     }
 
     return 0;
